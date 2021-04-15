@@ -1,8 +1,8 @@
-# Django Polls Tutorial Sample Application - Version 2
+# Django Polls Tutorial Sample Application - Version 3.0
 
 * This repository includes all the steps through the end of https://docs.djangoproject.com/en/3.1/intro/tutorial04/#write-a-minimal-form
 
-* Note that now the database has now been configured to connect to an external postgresql database with the password and host passed in as environment variables:
+* But now the database has now been configured to connect to an external postgresql database with the password and host passed in as environment variables:
 ```
 DATABASES = {
     'default': {
