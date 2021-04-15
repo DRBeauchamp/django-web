@@ -10,6 +10,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
+
+from django.core.exceptions import ImproperlyConfigured
+def get_env_value(env_variable):
+    try:
+        return os.environ[env_variable]
+    except KeyError:
+        error_msg = 'Set the {} environment variable'.format(env_variable)
+        raise ImproperlyConfigured(error_msg)
+
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +36,7 @@ SECRET_KEY = 'x2e)v$nb$7mdr3^o43_6s3f@rxs0_!r^6bs---##g&7!l^%jx+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -76,8 +87,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mydatabase',
+        'USER': 'mydatabaseuser',
+        'PASSWORD': get_env_value('DATABASE_PASSWORD'),
+        'HOST': get_env_value('ENDPOINT'),
+        'PORT': '5432',
     }
 }
 
