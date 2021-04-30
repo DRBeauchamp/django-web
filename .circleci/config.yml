@@ -11,6 +11,6 @@ jobs:
       - run: docker tag django-web:$CIRCLE_SHA1 259677325264.dkr.ecr.us-east-1.amazonaws.com/django-web:$CIRCLE_SHA1
       - run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 259677325264.dkr.ecr.us-east-1.amazonaws.com
       - run: docker push 259677325264.dkr.ecr.us-east-1.amazonaws.com/django-web:$CIRCLE_SHA1
-      - run: mkdir .kube ; echo $KUBE_CONFIG_B64 | base64 -D > .kube/config
+      - run: mkdir .kube ; echo $KUBE_CONFIG_B64 | base64 -d > .kube/config
       - run: cat .kube/config
       # - run: kubectl cluster-info
