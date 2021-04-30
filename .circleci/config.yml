@@ -9,4 +9,4 @@ jobs:
       - run: pwd
       - run: docker build -t django-web:$CIRCLE_SHA1 .
       - run: aws sts get-caller-identity
-      # - run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin
+      - run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 259677325264.dkr.ecr.us-east-1.amazonaws.com
