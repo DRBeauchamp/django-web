@@ -8,3 +8,4 @@ jobs:
       - run: ls
       - run: pwd
       - run: docker build .
+      - run: docker tag django-web:latest django-web:$CIRCLE_SHA1
